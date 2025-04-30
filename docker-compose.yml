@@ -1,0 +1,15 @@
+services:
+  schaad.zip:
+    build: .
+    container_name: schaad.zip
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
