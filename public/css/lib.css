@@ -1,0 +1,65 @@
+@import './fonts.css';
+
+:root {
+    --primary: #D11FB9;
+    --background: #121212;
+    --secondary: #655C63;
+    --accent: #A000A3;
+    --text: #f9f9f9;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+    color: var(--text);
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+html, body {
+    min-height: 100dvh;
+    min-width: 100dvw;
+    padding: 0;
+    margin: 0;
+    background-color: var(--background);
+}
+
+body {
+    margin: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.round {
+    border-radius: 999px;
+}
+
+.header {
+    font-weight: 600;
+    font-size: 32px;
+}
+
+.tag {
+    width: fit-content;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: var(--accent);
+    cursor: pointer;
+
+    &:nth-child(even) {
+        background-color: var(--primary)
+    }
+
+}
+
+.tag-content {
+    display: none;
+}
+
+.active {
+    display: unset;
+}
