@@ -13,6 +13,12 @@ class Server
 
     initializeMiddleware() {
         this.app.use(express.static('public'));
+        this.app.use((req, res, next) => {
+            res.setHeader("server", "Kubyx");
+            res.removeHeader('X-powered-by');
+
+            next();
+        })
     }
 
     initializeRoutes() {
