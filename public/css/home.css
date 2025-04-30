@@ -41,7 +41,7 @@
 main#content {
     border-radius: 12px;
     background-color: var(--secondary);
-    width: 1024px;
+    width: min(1024px, 100%);
     margin: 0 auto;
     padding: 24px;
 

@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-    margin: 24px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -38,8 +38,7 @@ ul {
 }
 
 footer {
-    width: 1024px;
-    /* margin: auto auto 0 auto;  */
+    max-width: 1024px;
     margin: 0 auto;
     padding: 24px;
     background-color: var(--secondary);
@@ -71,6 +70,10 @@ footer {
 
 .tag-content {
     display: none;
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px;
 }
 
 .active {
