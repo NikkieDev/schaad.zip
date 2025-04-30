@@ -10,7 +10,6 @@ class TagHelper
         }));
 
         this.setContent = this.setContent.bind(this)
-
         this.tags.forEach(t => t.element.addEventListener('click', this.setContent));
     }
 

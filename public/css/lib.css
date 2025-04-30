@@ -33,6 +33,19 @@ body {
     gap: 24px;
 }
 
+ul {
+    margin: 12px;
+}
+
+footer {
+    width: 1024px;
+    /* margin: auto auto 0 auto;  */
+    margin: 0 auto;
+    padding: 24px;
+    background-color: var(--secondary);
+    border-radius: 12px;
+}
+
 .round {
     border-radius: 999px;
 }
