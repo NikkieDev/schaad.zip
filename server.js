@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 
 const analyticsController = require('./Controller/api/AnalyticsController');
+const legalController = require('./Controller/LegalController');
 
 class Server
 {
@@ -25,6 +26,7 @@ class Server
     initializeRoutes() {
         this.app.get('/', (req, res) => res.sendFile(__dirname + '/public/pages/home.html'));
         this.app.use(analyticsController.getRouter());
+        this.app.use(legalController.getRouter());
     }
 
     listen() {

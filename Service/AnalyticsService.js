@@ -5,6 +5,27 @@ class AnalyticsService
 {
     storeName = "analytics.json";
 
+    constructor()
+    {
+        this.verifyStoreExists();
+    }
+
+    verifyStoreExists()
+    {
+        try {
+            fs.readFileSync(`./data/${this.storeName}`);
+        } catch (error) {
+            fs.writeFileSync(`./data/${this.storeName}`, JSON.stringify(this.getDefaultObj(), null, 4));
+        }
+    }
+
+    getDefaultObj()
+    {
+        return {
+            'visits': [],
+        }
+    }
+
     getStore()
     {
         return JSON.parse(fs.readFileSync('./data/' + this.storeName));

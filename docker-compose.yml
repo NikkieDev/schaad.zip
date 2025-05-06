@@ -7,9 +7,11 @@ services:
       - "3001:3001"
     env_file:
       - .env
-    networks:
-      - proxy-network
+    # networks:
+    #   - proxy-network
+    volumes:
+      - /var/www/schaad.zip/analytics:/app/data # Consistent analytics
 
-networks:
-  proxy-network:
-    external: true
+# networks:
+#   proxy-network:
+#     external: true

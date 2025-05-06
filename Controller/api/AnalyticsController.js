@@ -1,26 +1,18 @@
-const express = require('express');
-const AnalyticsService = require('../../Service/AnalyticsService');
+const BaseController = require('../BaseController');
 
-class AnalyticsController
+class AnalyticsController extends BaseController
 {
     constructor()
     {
-        this.router = express.Router();
-        this.analyticsService = new AnalyticsService();
-
-        this.registerAnalyticRoutes();
+        super();
+        this.register();
     }
 
-    registerAnalyticRoutes()
+    register()
     {
-        this.router.post('/api/analytics', (req, res) => {
-            this.analyticsService.addPageVisit(req.body, req.headers);
+        this.getRouter().post('/api/analytics', (req, res) => {
+            this.getAnalytics().addPageVisit(req.body, req.headers);
         });
-    }
-
-    getRouter()
-    {
-        return this.router;
     }
 }
 
