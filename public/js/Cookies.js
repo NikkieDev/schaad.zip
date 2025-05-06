@@ -2,8 +2,8 @@ class Cookies
 {
     constructor() {
         this.banner = document.querySelector('.cookie-wrapper');
-        this.acceptButton = document.querySelector(`.btn[data-role="cookie-button"][data-value="accept"]`);
-        this.denyButton = document.querySelector(`.btn[data-role="cookie-button"][data-value="deny"]`);
+        this.acceptButton = document.querySelector(`.btn[data-role='cookie-button'][data-value='accept']`);
+        this.denyButton = document.querySelector(`.btn[data-role='cookie-button'][data-value='deny']`);
         this.cookies = [];
 
         this.acceptButton.addEventListener('click', this.acceptCookies.bind(this));
@@ -14,7 +14,7 @@ class Cookies
             this.closeBanner();
             this.cookies = this.getCookiesAsMap();
 
-            Analytics.getInstance();
+            Analytics.getInstance().setId(this.findCookie('Cookie-ID'));
         }
     }
 
@@ -27,12 +27,19 @@ class Cookies
         }, {});
     }
 
+    findCookie(name)
+    {
+        return this.cookies[name];
+    }
+
     addCookie(cookieName, cookieValue)
     {
-        const date = new Date();
-        const expireDate = new Date(date.setTime(date.getTime() + (1000 * 86400)));
+        const expireDate = new Date();
+        expireDate.setTime(expireDate.getTime() + 365 * (1000 * 86400));
 
-        document.cookie = `${cookieName}=${cookieValue};expires=${expireDate.toUTCString()}`;
+        const cookieContent = `${cookieName}=${cookieValue};expires=${expireDate.toUTCString()}`;
+
+        document.cookie = cookieContent;
         this.cookies = this.getCookiesAsMap();
     }
 
@@ -46,10 +53,46 @@ class Cookies
         this.banner.classList.add('hidden');
     }
 
-    acceptCookies()
+    async createIdentifier()
     {
-        localStorage.setItem('cookies', 'accepted');
-        location.reload();
+        console.log("Creating!!!");
+        alert("Creating!!");
+
+        try {
+            const response = await fetch('/api/cookie/', {
+                method: 'GET',
+                headers: {
+                    'x-screen-resolution': `${window.screen.width}x${window.screen.height}`,
+                    'x-device-mem': navigator.deviceMemory,
+                }
+            });
+
+            console.log(response.status, response.headers);
+            if (200 !== response.status || !response.headers.get('content-type').includes('application/json')) {
+                console.log("Mismatc h");
+                return null;
+            }
+
+            const responseData = await response.json();
+            const identifier = responseData['data']['identifier'];
+
+            return identifier;
+        } catch (error) {
+            console.log('Unable to create a cookie identifier.');
+            return '';
+        }
+    }
+
+    async acceptCookies()
+    {
+        const identifier = await this.createIdentifier();
+
+        if (identifier) {
+            this.addCookie('Cookie-ID', identifier);
+
+            localStorage.setItem('cookies', 'accepted');
+            location.reload();
+        }
     }
 }
 

@@ -19,6 +19,7 @@ class Analytics
             totalTimeOnPage: 0,
             events: [],
             visitOrigin: '',
+            id: '',
         };
 
         document.addEventListener('visibilitychange', this.handlePageClose.bind(this));
@@ -57,6 +58,11 @@ class Analytics
     addEvent(eventData)
     {
         this.parts['events'].push(eventData);
+    }
+
+    setId(id)
+    {
+        this.parts['id'] = id;
     }
 
     send()

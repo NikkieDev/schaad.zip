@@ -11,7 +11,9 @@ class LegalController extends BaseController
 
     register()
     {
-        this.getRouter().get('/privacy', (req, res) => ResponseUtil.sendFile(res, 'Legal/privacy-policy.pdf'));
+        this.getRouter().get('/privacy', (req, res) => {
+            ResponseUtil.sendFile(res, 'Legal/privacy-policy.pdf');
+        });
     }
 }
 
