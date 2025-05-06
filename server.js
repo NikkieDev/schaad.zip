@@ -1,3 +1,5 @@
+const EnvironmentValidator = require('./Util/EnvironmentValidator');
+
 const express = require('express');
 require('dotenv').config();
 
@@ -7,6 +9,8 @@ const legalController = require('./Controller/LegalController');
 class Server
 {
     constructor() {
+        EnvironmentValidator.verifyAllRequired();
+
         this.port = parseInt(process.env.PORT || 3001);
         this.app = express();
 
