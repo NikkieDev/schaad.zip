@@ -23,7 +23,9 @@
     
     <link rel="stylesheet" href="/css/lib.css">
     <link rel="stylesheet" href="/css/home.css">
+    
     <script defer src="/js/Analytics.js"></script>
+    <script defer src="/js/Cookies.js"></script>
     <script defer src="/js/TagHelper.js"></script>
 </head>
 <body>
@@ -126,11 +128,25 @@
     <footer class="footer--wrapper">
         <div class="footer">
             <p>This page is in active development, bugs may occur. You are not allowed to derive any rights from this website. This website has no affiliation nor liability with Kubyx or any other companies mentioned. Kubyx has its own rights, and is solely used as infrastructure.</p>
-            <p>We store your data anonymously, and can be deleted upon request. Requesting such can be done by filling out the contact form on <a href="https://www.kubyx.nl">kubyx.nl</a>. Please read our <a href="/privacy">Privacy policy</a> for more information</p>
+            <p>We store your data securely, and can be deleted upon request. Requesting such can be done by filling out the contact form on <a href="https://www.kubyx.nl">kubyx.nl</a>. Please read our <a href="/privacy">Privacy policy</a> for more information</p>
             <p>Some of our analytical usage data is anonymously available to the public, and can be fully requested by filling out the contact form on <a href="https://www.kubyx.nl">kubyx.nl</a>.</p>
             <p>This website and its contents are owned by Nik Schaad. The contents of this website are intellectual property and may not be commercially used without the owners permission. Doing so is grounds for legal procedures</p>
             <p>For any business inquiries, please refer to <a href="https://www.kubyx.nl">kubyx.nl</a> and fill out the contact form.</p>
         </div>
     </footer>
+
+    <div class="fixed bottom cookie-wrapper">
+        <div class="cookies">
+            <h3>Cookies on schaad.zip</h3>
+            <p>I use cookies on this website, and collect usage-data. With these cookies and data I can monitor how my website functions, and catch bugs easily.</p>
+            <p>This data also allows me to improve the website's functionality and performance. We might build a personality on you to use for personalised advertisement & communications with you.</p>
+            <p>Some cookies are required for the functionality of the website, but don't collect personalized information. These cookies are always active.</p>
+
+            <div class="cookies-choice--wrapper">
+                <button data-role="cookie-button" data-value="deny" class="btn btn-dark">Decline</button>
+                <button data-role="cookie-button" data-value="accept" class="btn">Accept optional cookies</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
