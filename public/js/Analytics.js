@@ -18,6 +18,7 @@ class Analytics
             timesBlurred: 0,
             totalTimeOnPage: 0,
             events: [],
+            visitOrigin: '',
         };
 
         document.addEventListener('visibilitychange', this.handlePageClose.bind(this));
