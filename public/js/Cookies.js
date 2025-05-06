@@ -9,7 +9,7 @@ class Cookies
         this.acceptButton.addEventListener('click', this.acceptCookies.bind(this));
         this.denyButton.addEventListener('click', this.closeBanner.bind(this));
 
-        if (this.cookiesAccepted())
+        if (this.cookiesAccepted() && this.findCookie('Cookie-ID'))
         {
             this.closeBanner();
             this.cookies = this.getCookiesAsMap();
@@ -29,7 +29,7 @@ class Cookies
 
     findCookie(name)
     {
-        return this.cookies[name];
+        return this.cookies[name] ?? this.getCookiesAsMap()[name];
     }
 
     addCookie(cookieName, cookieValue)
