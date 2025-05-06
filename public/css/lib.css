@@ -116,7 +116,7 @@ footer {
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 856px) {
     .cookie-wrapper {
         left: 64px;
         bottom: 64px;
