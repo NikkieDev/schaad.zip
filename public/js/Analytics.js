@@ -65,5 +65,3 @@ class Analytics
         navigator.sendBeacon(path, body);
     }
 }
-
-Analytics.getInstance();
