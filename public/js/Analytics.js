@@ -50,6 +50,7 @@ class Analytics
     {
         this.parts['totalTimeOnPage'] = this.calculateTotalTimeInSeconds();
         this.parts['timesBlurred'] = this.blurredCount;
+        this.parts['visitOrigin'] = document.referrer;
     }
 
     addEvent(eventData)

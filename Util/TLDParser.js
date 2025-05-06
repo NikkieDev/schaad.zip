@@ -2,7 +2,13 @@ class TLDParser
 {
     static getDomain(url)
     {
-        return new URL(url).hostname;
+        let domain = '';
+
+        try {
+            domain = new URL(url).hostname;
+        } catch (error) {
+            return domain;
+        }
     }
 
     static getProtocol(url)

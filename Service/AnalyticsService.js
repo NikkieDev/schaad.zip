@@ -45,10 +45,13 @@ class AnalyticsService
     addPageVisit(body, headers)
     {
         const store = this.getStore();
+        const originDomain = TLDParser.getDomain(body['visitOrigin']) || 'schaad.zip';
+
         const data = {
             ...body,
-            referer: TLDParser.getDomain(headers['referer']),
+            visitOrigin: originDomain,
             date: new Date().toISOString(),
+            userAgent: headers['user-agent']
         }
 
         store['visits'].push(data);
