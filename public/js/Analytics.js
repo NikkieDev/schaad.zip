@@ -35,7 +35,7 @@ class Analytics
         return (this.stopTime - this.startTime) / 1000;
     }
 
-    async handlePageClose()
+    handlePageClose()
     {
         if (document.visibilityState !== 'hidden') {
             return;
@@ -44,7 +44,7 @@ class Analytics
         this.stopTime = new Date().getTime();
 
         this.buildAnalytics()
-        await this.send();
+        this.send();
     }
 
     buildAnalytics()
