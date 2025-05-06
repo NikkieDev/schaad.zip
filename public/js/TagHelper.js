@@ -9,8 +9,19 @@ class TagHelper
             name: t.textContent
         }));
 
-        this.setContent = this.setContent.bind(this)
-        this.tags.forEach(t => t.element.addEventListener('click', this.setContent));
+        this.handleClick = this.handleClick.bind(this)
+        this.tags.forEach(t => t.element.addEventListener('click', this.handleClick));
+    }
+    
+    handleClick(event)
+    {
+        const eventObj = {
+            event: 'click',
+            target: this.getTagName(event.target),
+        };
+
+        Analytics.getInstance().addEvent(eventObj);
+        this.setContent(event.target);
     }
 
     findTag(element)
@@ -18,14 +29,19 @@ class TagHelper
         return this.tags.find(t => t.element == element);
     }
 
+    getTagName(element)
+    {
+        return this.findTag(element).name;
+    }
+
     getContent()
     {
         return document.querySelector('.tag-content.active');
     }
 
-    setContent(event)
+    setContent(clickedElement)
     {
-        const clickedTag = this.findTag(event.target);
+        const clickedTag = this.findTag(clickedElement);
         const currentActive = this.getContent();
 
         currentActive.classList.remove('active');

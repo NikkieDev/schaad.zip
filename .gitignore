@@ -4,3 +4,5 @@ package-lock.json
 .env
 *.bash
 *.sh
+data/
+public/Legal/*.pdf

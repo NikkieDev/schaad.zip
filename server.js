@@ -1,6 +1,9 @@
 const express = require('express');
 require('dotenv').config();
 
+const analyticsController = require('./Controller/api/AnalyticsController');
+const legalController = require('./Controller/LegalController');
+
 class Server
 {
     constructor() {
@@ -13,16 +16,17 @@ class Server
 
     initializeMiddleware() {
         this.app.use(express.static('public'));
+        this.app.use(express.json());
         this.app.use((req, res, next) => {
-            res.setHeader("server", "Kubyx");
             res.removeHeader('X-powered-by');
-
             next();
-        })
+        });
     }
 
     initializeRoutes() {
         this.app.get('/', (req, res) => res.sendFile(__dirname + '/public/pages/home.html'));
+        this.app.use(analyticsController.getRouter());
+        this.app.use(legalController.getRouter());
     }
 
     listen() {
