@@ -55,9 +55,6 @@ class Cookies
 
     async createIdentifier()
     {
-        console.log("Creating!!!");
-        alert("Creating!!");
-
         try {
             const response = await fetch('/api/cookie/', {
                 method: 'GET',
@@ -69,7 +66,6 @@ class Cookies
 
             console.log(response.status, response.headers);
             if (200 !== response.status || !response.headers.get('content-type').includes('application/json')) {
-                console.log("Mismatc h");
                 return null;
             }
 
