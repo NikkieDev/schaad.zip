@@ -5,13 +5,6 @@ module.exports = class HttpClient
     #hostname = process.env.API_URL;
     #token = "";
 
-    constructor()
-    {
-        if (!this.#token) {
-            this.#token = this.#login();
-        }
-    }
-
     async #login()
     {
         const formData = new FormData();
@@ -31,8 +24,15 @@ module.exports = class HttpClient
         this.#token = responseBody.data.token;
     }
     
-    async doRequest(path, options)
+    async doRequest(path, options = {})
     {
+        if (!this.#token) {
+            this.#token = await this.#login();
+        }
+
+        const headers = new Headers(options.headers || {});
+        headers.set('Authorization', `Bearer ${this.#token}`);
+
         try {
             const response = await fetch(`${this.#hostname}/${path}`, options);
 
