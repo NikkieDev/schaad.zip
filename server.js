@@ -1,10 +1,10 @@
-const EnvironmentValidator = require('./Util/EnvironmentValidator');
-
 const express = require('express');
 require('dotenv').config();
 
 const analyticsController = require('./Controller/api/AnalyticsController');
 const legalController = require('./Controller/LegalController');
+const EnvironmentValidator = require('./Util/EnvironmentValidator');
+const DbService = require('./Service/DbService');
 
 class Server
 {
@@ -38,4 +38,6 @@ class Server
     }
 }
 
-new Server().listen();
+(async () => {
+    new Server().listen();
+})()

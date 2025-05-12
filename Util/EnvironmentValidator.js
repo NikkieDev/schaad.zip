@@ -1,6 +1,8 @@
 const required = [
     'PORT',
     'SECRET',
+    'APP_ENV',
+    'API_URL',
 ];
 
 class EnvironmentValidator

@@ -7,38 +7,12 @@ services:
       - "3001:3001"
     env_file:
       - .env
-    # networks:
-      # - proxy-network
+    networks:
+      - ${DOCKER_NETWORK}
     volumes:
       - /var/www/schaad.zip/analytics:/app/data # Consistent analytics
       - ./public:/app/public
-  redis:
-    image: redis:latest
-    container_name: redis.schaad.zip
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
-    # networks:
-      # - proxy-network
-    env_file:
-      - .env
-  mysql:
-    image: mysql:8.0
-    container_name: mysql.schaad.zip
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    ports:
-      - "${MYSQL_PORT}:${MYSQL_PORT}"
-    # networks:
-      # - proxy-network
-    volumes:
-      - /var/www/schaad.zip/mysql-data:/var/lib/mysql
-      - ./sql/:/docker-entrypoint-initdb.d
 
-# networks:
-#   proxy-network:
-#     external: true
+networks:
+  proxy-network:
+    external: true
