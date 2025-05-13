@@ -18,7 +18,6 @@ class FingerprintService
             timestamp: this.timestamp,
             deviceMemory: this.deviceMemory,
             language: this.language,
-            timestamp: this.timestamp
         }), salt);
 
         return hash;
